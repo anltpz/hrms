@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +29,7 @@ public class JobSeeker  extends User{
 	@Column(name ="last_name" )
 	private String lastName;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "birthday")
 	private Date birthday;
 
