@@ -32,7 +32,7 @@ public class JobPositionManager implements JobPositionService {
 	public Result add(JobPosition jobPosition) {
 		if (this.jobPositionDao.getByTitle(jobPosition.getTitle())==null) {
 			this.jobPositionDao.save(jobPosition);
-			return new SuccessResult("Kayıt olundu");
+			return new SuccessResult("İş posizuonu kaydedildi");
 		}
 		else {
 			return new ErrorResult("İş posizyonu sistemde kayıtlı");
