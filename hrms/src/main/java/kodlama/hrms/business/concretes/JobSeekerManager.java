@@ -1,5 +1,7 @@
 package kodlama.hrms.business.concretes;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,9 +9,11 @@ import org.springframework.stereotype.Service;
 import kodlama.hrms.business.abstracts.JobSeekerService;
 import kodlama.hrms.business.abstracts.VerificationService;
 import kodlama.hrms.core.utilities.fakeMernisAdapter.FakeMernisService;
+import kodlama.hrms.core.utilities.results.DataResult;
 import kodlama.hrms.core.utilities.results.ErrorDataResult;
 import kodlama.hrms.core.utilities.results.ErrorResult;
 import kodlama.hrms.core.utilities.results.Result;
+import kodlama.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.hrms.core.utilities.results.SuccessResult;
 import kodlama.hrms.dataAccess.JobSeekerDao;
 import kodlama.hrms.entities.concretes.JobSeeker;
@@ -61,6 +65,12 @@ public class JobSeekerManager implements JobSeekerService {
 			
 		}
 		return new ErrorResult("Kayıt Olunamadı");
+	}
+
+	@Override
+	public DataResult<List<JobSeeker>> getAll() {
+		
+		return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findAll(), "Listeleme Başarılı");
 	}
 
 	
