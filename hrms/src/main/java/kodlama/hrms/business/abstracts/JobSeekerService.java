@@ -6,5 +6,5 @@ import kodlama.hrms.entities.concretes.JobSeeker;
 
 public interface JobSeekerService {
 		Result add(JobSeeker jobSeeker);
-		
+		Result register(JobSeeker register);
 }

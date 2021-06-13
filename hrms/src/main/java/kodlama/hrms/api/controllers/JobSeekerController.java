@@ -1,5 +1,7 @@
 package kodlama.hrms.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,10 +25,16 @@ public class JobSeekerController {
 		}
 		
 		@PostMapping("/add")
-		public Result add(@RequestBody JobSeeker jobSeeker)
+		public Result add(@RequestBody @Valid JobSeeker jobSeeker)
 		{
 			
 			return this.jobSeekerService.add(jobSeeker);
+		}
+		@PostMapping("/register")
+		public Result register(@RequestBody @Valid JobSeeker jobSeeker)
+		{
+			
+			return this.jobSeekerService.register(jobSeeker);
 		}
 	
 	
