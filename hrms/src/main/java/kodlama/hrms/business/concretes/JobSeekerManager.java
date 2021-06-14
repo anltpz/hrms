@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 
 
 import kodlama.hrms.business.abstracts.JobSeekerService;
-import kodlama.hrms.business.abstracts.VerificationService;
+import kodlama.hrms.business.abstracts.VerificationCodeService;
 import kodlama.hrms.core.utilities.fakeMernisAdapter.FakeMernisService;
 import kodlama.hrms.core.utilities.results.DataResult;
-import kodlama.hrms.core.utilities.results.ErrorDataResult;
 import kodlama.hrms.core.utilities.results.ErrorResult;
 import kodlama.hrms.core.utilities.results.Result;
 import kodlama.hrms.core.utilities.results.SuccessDataResult;
@@ -23,17 +22,16 @@ public class JobSeekerManager implements JobSeekerService {
 
 	private JobSeekerDao jobSeekerDao;
 	private FakeMernisService fakeMernis;
-	private VerificationService verificationService;
-
+	private VerificationCodeService verificationCodeService;
 
 
    @Autowired
-	public JobSeekerManager(JobSeekerDao jobSeekerDao, FakeMernisService fakeMernis,
-			VerificationService verificationService) {
+   public JobSeekerManager(JobSeekerDao jobSeekerDao, FakeMernisService fakeMernis
+			 , VerificationCodeService verificationCodeService) {
 		super();
 		this.jobSeekerDao = jobSeekerDao;
 		this.fakeMernis = fakeMernis;
-		this.verificationService = verificationService;
+		this.verificationCodeService = verificationCodeService;
 	}
 
 	@Override
@@ -48,20 +46,17 @@ public class JobSeekerManager implements JobSeekerService {
 		
 	}
 
+	
+
 	@Override
 	public Result register(JobSeeker register) {
 		if (jobSeekerDao.findByEmail(register.getEmail())==null && jobSeekerDao.findByIdentityNumber(register.getIdentityNumber())==null) {	
 			fakeMernis.mernisCheck(register.getEmail());			
-			verificationService.sendVerificationCode(register.getEmail());			
-			jobSeekerDao.save(register);
-			//Burada aktifligi false yazıcagım  ver tabanına yazmadım
 			
+				jobSeekerDao.save(register);
+				verificationCodeService.codeAddUser(register.getId()); 
 			
-			//1. adım email ve tc numarası veri tabanında varmmı kontorol et
-			//2 .adım tc kimlik numarasını mernins sisteminde kontrol et dogruysa devam et
-			//3. e posta adresine dogrulama kodu gönder
-			//4. adım veri tabanındaki aktif useri false çek cünkü dogrulama kodu onaylanmadı sadece gönderildi
-			return new SuccessResult("Kayıt Olundu");
+			return new SuccessResult("Kayıt Olunması Icın dogrulama kodu gonderıldı");
 			
 		}
 		return new ErrorResult("Kayıt Olunamadı");
@@ -71,6 +66,18 @@ public class JobSeekerManager implements JobSeekerService {
 	public DataResult<List<JobSeeker>> getAll() {
 		
 		return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findAll(), "Listeleme Başarılı");
+	}
+
+	@Override
+	public Result delete(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<JobSeeker> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

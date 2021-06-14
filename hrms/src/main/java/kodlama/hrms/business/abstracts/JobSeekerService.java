@@ -10,6 +10,9 @@ import kodlama.hrms.entities.concretes.JobSeeker;
 public interface JobSeekerService {
 		Result add(JobSeeker jobSeeker);
 		Result register(JobSeeker register);
+		Result delete(int id);
+		DataResult<JobSeeker> getById(int id);
+		
 		DataResult<List<JobSeeker>> getAll();
 		
 }

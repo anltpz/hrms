@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import kodlama.hrms.business.abstracts.EmployerService;
-import kodlama.hrms.business.abstracts.VerificationService;
 import kodlama.hrms.core.utilities.fakeMernisAdapter.FakeMernisService;
 import kodlama.hrms.core.utilities.results.DataResult;
 import kodlama.hrms.core.utilities.results.ErrorResult;
@@ -21,16 +20,15 @@ public class EmployerManager implements EmployerService{
 	
 	private EmployerDao employerDao;
 	private FakeMernisService fakeMernis;
-	private VerificationService verificationService;
+	
 	
 
 
-	public EmployerManager(EmployerDao employerDao, FakeMernisService fakeMernis,
-			VerificationService verificationService) {
+	public EmployerManager(EmployerDao employerDao, FakeMernisService fakeMernis
+			) {
 		super();
 		this.employerDao = employerDao;
 		this.fakeMernis = fakeMernis;
-		this.verificationService = verificationService;
 	}
 
 	@Override
@@ -45,8 +43,7 @@ public class EmployerManager implements EmployerService{
 			}
 			else {
 				this.employerDao.save(employer);
-				verificationService.sendVerificationCode(employer.getEmail());
-				// burda dogrulama maili gönderiyorum veri tabanına kaydetmiyor sadece gönderiyor
+				
 				return new SuccessResult("Kayıt başarılı");
 				
 			}

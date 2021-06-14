@@ -39,4 +39,8 @@ public class User {
     	      = "Şifre 5 ve 20 karakter arasında olmalı")
 	 @Column(name = "password")
 	 private String password;
+    
+    @Column(name = "email_verify")
+	public boolean emailVerif;
 }
+	

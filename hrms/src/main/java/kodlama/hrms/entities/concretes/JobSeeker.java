@@ -1,5 +1,6 @@
 package kodlama.hrms.entities.concretes;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -37,11 +38,12 @@ public class JobSeeker  extends User{
 
 	
 	@Column(name = "birthday")
-	private Date birthday;
+	private LocalDate birthday;
 	
 	@Size(min = 11, max = 11, message = "İdentity 11 Harften Oluşmalıdır")
 	@Column(name = "identity_number")
 	private String identityNumber;
 
+	
 	
 }
