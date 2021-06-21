@@ -16,28 +16,31 @@ import kodlama.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.hrms.core.utilities.results.SuccessResult;
 import kodlama.hrms.dataAccess.JobSeekerDao;
 import kodlama.hrms.entities.concretes.JobSeeker;
+import kodlama.hrms.entities.concretes.User;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
 
 	private JobSeekerDao jobSeekerDao;
 	private FakeMernisService fakeMernis;
-	private VerificationCodeService verificationCodeService;
+	private VerificationCodeService verificationService;
 
 
    @Autowired
    public JobSeekerManager(JobSeekerDao jobSeekerDao, FakeMernisService fakeMernis
-			 , VerificationCodeService verificationCodeService) {
+			,VerificationCodeService verificationService ) {
 		super();
 		this.jobSeekerDao = jobSeekerDao;
 		this.fakeMernis = fakeMernis;
-		this.verificationCodeService = verificationCodeService;
+		this.verificationService=verificationService;
 	}
 
 	@Override
 	public Result add(JobSeeker jobSeeker) {
 		if (jobSeekerDao.findByEmail(jobSeeker.getEmail())==null) {
 			System.out.println("Sistemde email yok kayıt olunabilir");
+			
+			
 			jobSeekerDao.save(jobSeeker);
 			return new SuccessResult("İşlem başarılı");
 		}
@@ -51,10 +54,16 @@ public class JobSeekerManager implements JobSeekerService {
 	@Override
 	public Result register(JobSeeker register) {
 		if (jobSeekerDao.findByEmail(register.getEmail())==null && jobSeekerDao.findByIdentityNumber(register.getIdentityNumber())==null) {	
-			fakeMernis.mernisCheck(register.getEmail());			
+			fakeMernis.mernisCheck(register.getEmail());		
+			
 			
 				jobSeekerDao.save(register);
-				verificationCodeService.codeAddUser(register.getId()); 
+					
+				verificationService.codeAddUser(register.getId());
+				
+						
+				
+				
 			
 			return new SuccessResult("Kayıt Olunması Icın dogrulama kodu gonderıldı");
 			

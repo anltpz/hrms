@@ -16,22 +16,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "job_positions")
-public class JobPosition {
+@Table(name = "city")
+public class City {
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "title")
-	private String title;
+	@Column(name = "name")
+	private String name;
+	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "employer")
-    private List<JobAdvertisement> jobPosition;
+	@OneToMany(mappedBy = "city" )
+	private List<JobAdvertisement> jobAdverts;
 }

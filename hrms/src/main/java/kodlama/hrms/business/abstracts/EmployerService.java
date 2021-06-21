@@ -11,4 +11,5 @@ public interface EmployerService {
 	Result register(Employer employer);
 	Result add(Employer employer);
 	DataResult<List<Employer>> getAll();
+	DataResult<List<Employer>> findByIsConfirmed(boolean deger);
 }

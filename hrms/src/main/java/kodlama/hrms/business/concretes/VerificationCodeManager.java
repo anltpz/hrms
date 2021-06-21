@@ -39,7 +39,7 @@ public class VerificationCodeManager  implements VerificationCodeService{
 	@Override
 	public Result codeAddUser(int userId) {
 		VerificationCode code = new VerificationCode();
-		code.setConfirmed(false);
+		code.setConfirmed(false);		
 		code.setUserId(userId);
 		code.setCode(codeOlustur());
 		add(code);
@@ -56,7 +56,7 @@ public class VerificationCodeManager  implements VerificationCodeService{
         }
 
         User user = userDao.getById(verificationCodeDao.findByCode(code).getUserId());
-        user.setEmailVerif(true);
+       
         userDao.save(user);
 
         VerificationCode activationCode=verificationCodeDao.findByCode(code);

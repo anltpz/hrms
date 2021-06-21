@@ -42,6 +42,14 @@ public class EmployerController {
 		return this.empoloyerService.getAll();
 		
 	}
+	@GetMapping("/activeEmpolyer")
+	
+	public DataResult<List<Employer>> getActiveEmployer(){
+		
+		return this.empoloyerService.findByIsConfirmed(false);
+	}
+	
+	
 	
 	
 }

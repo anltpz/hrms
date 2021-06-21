@@ -9,8 +9,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -40,7 +38,6 @@ public class User {
 	 @Column(name = "password")
 	 private String password;
     
-    @Column(name = "email_verify")
-	public boolean emailVerif;
+   
 }
 	
