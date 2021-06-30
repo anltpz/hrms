@@ -15,8 +15,8 @@ import kodlama.hrms.core.utilities.results.Result;
 import kodlama.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.hrms.core.utilities.results.SuccessResult;
 import kodlama.hrms.dataAccess.JobSeekerDao;
+import kodlama.hrms.entities.abstracts.dto.JoobSeekerWithSchool;
 import kodlama.hrms.entities.concretes.JobSeeker;
-import kodlama.hrms.entities.concretes.User;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
@@ -88,6 +88,14 @@ public class JobSeekerManager implements JobSeekerService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public DataResult<List<JoobSeekerWithSchool>> getJoobSeekerWithSchool() {
+		// TODO Auto-generated method stub
+		return new SuccessDataResult<List<JoobSeekerWithSchool>>(this.jobSeekerDao.getJoobSeekerWithSchool(), "Okulu geldi");
+	}
+
+
 
 	
 	

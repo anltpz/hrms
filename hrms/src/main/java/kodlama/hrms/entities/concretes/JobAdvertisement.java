@@ -1,8 +1,5 @@
 package kodlama.hrms.entities.concretes;
 
-
-
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -18,7 +15,6 @@ import javax.validation.constraints.Future;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
@@ -68,7 +64,7 @@ public class JobAdvertisement {
 	@Column(name="is_open",columnDefinition = "boolean Default true")
 	private boolean isOpen=true;
 	
-	@JsonIgnore
+	
 	@CreationTimestamp
 	@Temporal(javax.persistence.TemporalType.DATE)
 	@Column(name="published_at")
@@ -81,4 +77,8 @@ public class JobAdvertisement {
 	@Temporal(javax.persistence.TemporalType.DATE)
 	@Column(name="deadline")
 	private Date deadLine;
+	
+	@Column(name="is_active")
+	public boolean isActive;
+	
 }

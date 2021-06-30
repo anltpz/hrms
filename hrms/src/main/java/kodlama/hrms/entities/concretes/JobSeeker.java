@@ -1,15 +1,19 @@
 package kodlama.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import kodlama.hrms.entities.concretes.CvEntity.CvSchool;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -39,7 +43,10 @@ public class JobSeeker  extends User{
 	@Size(min = 11, max = 11, message = "İdentity 11 Harften Oluşmalıdır")
 	@Column(name = "identity_number")
 	private String identityNumber;
-
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobSeeker")
+    private List<CvSchool> cvSchool;
 	
 	
 }

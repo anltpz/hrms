@@ -14,7 +14,6 @@ import kodlama.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.hrms.core.utilities.results.SuccessResult;
 import kodlama.hrms.dataAccess.EmployerDao;
 import kodlama.hrms.entities.concretes.Employer;
-import kodlama.hrms.entities.concretes.User;
 
 @Service
 public class EmployerManager implements EmployerService{

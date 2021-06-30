@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlama.hrms.business.abstracts.JobSeekerService;
 import kodlama.hrms.core.utilities.results.DataResult;
 import kodlama.hrms.core.utilities.results.Result;
+import kodlama.hrms.entities.abstracts.dto.JoobSeekerWithSchool;
 import kodlama.hrms.entities.concretes.JobSeeker;
 
 @RestController
@@ -49,6 +50,15 @@ public class JobSeekerController {
 			
 			
 		}
+		
+		@GetMapping("getAllschool")
+		public DataResult<List<JoobSeekerWithSchool>> getschool(){
+			return this.jobSeekerService.getJoobSeekerWithSchool();
+			
+			
+			
+		}
+		
 		/* @GetMapping("/active/{code}")
 		    public ResponseEntity<?> activateUser(@PathVariable String code){
 		        Result result=this.activationCodeService.activateUser(code);
