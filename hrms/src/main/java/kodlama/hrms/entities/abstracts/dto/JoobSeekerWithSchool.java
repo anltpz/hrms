@@ -15,5 +15,5 @@ public class JoobSeekerWithSchool {
 		@NotBlank(message = "Last Name Boş olamaz")
 		private String lastName;
 		private String schoolName;
-		private String asds;
+		
 }
